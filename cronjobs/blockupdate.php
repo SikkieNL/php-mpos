@@ -25,13 +25,13 @@ chdir(dirname(__FILE__));
 // Include all settings and classes
 require_once('shared.inc.php');
 
-if ( $bitcoin->can_connect() !== true ) {
+if ($bitcoin->can_connect() !== true) {
   $log->logFatal("Failed to connect to RPC server\n");
   $monitoring->endCronjob($cron_name, 'E0006', 1, true);
 }
 
 // Fetch all unconfirmed blocks
-$aAllBlocks = $block->getAllUnconfirmed(max($config['network_confirmations'],$config['confirmations']));
+$aAllBlocks = $block->getAllUnconfirmed(max($config['network_confirmations'], $config['confirmations']));
 
 $header = false;
 foreach ($aAllBlocks as $iIndex => $aBlock) {
